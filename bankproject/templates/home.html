@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %} - My Website</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <body style="background-image:url('{% static 'banking.png' %}');"></body>
+  <style>
+    body {
+      background-image: url('/static/img/banking.png');
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">AXIS BANK</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="register">Register</a>
+        </li>
+        <div class="dropdown">
+
+  <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="{% if 'bankapp' in request.path %} active {% endif %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Branches
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="https://indianbankifscmicrbranchdetails.c12.in/page.php?ifsc=UTIB0001499">Ernakulam</a>
+            <a class="dropdown-item" href="https://bankifscmicrbranchdetails.c12.in/page.php?ifsc=UTIB000MANA">Thrissur</a>
+            <a class="dropdown-item" href="https://ifsc.c12.in/page.php?ifsc=UTIB0000136">Kozhikode</a>
+            <a class="dropdown-item" href="https://bankifscmicrbranchdetails.c12.in/page.php?ifsc=UTIB0001462">malappuram</a>
+            <a class="dropdown-item" href="https://ifsc.c12.in/page.php?ifsc=UTIB0000218">Kollam</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">All Branches</a>
+          </div>
+        </li>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!--          <div class="dropdown">-->
+<!--            <button class="dropbtn">dropdown</button>-->
+<!--   <div class="dropdown-content">-->
+<!--     <a href="dropbtn">home</a>-->
+<!--     <a href="#">about</a>-->
+<!--   </div>-->
+<!--          </div>-->
+</div>
+      </ul>
+    </div>
+  </nav>
+  <div class="jumbotron">
+    <h1>Welcome to AXIS BANK</h1>
+    <p>Here you can find all kinds of information about the districts of your city.</p>
+    <p><a class="btn btn-primary btn-lg" href="login" role="button">click here to login</a></p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://

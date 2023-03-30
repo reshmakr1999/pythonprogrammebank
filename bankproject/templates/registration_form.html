@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>Registration Form</h2>
+	<form method="post">
+		{% csrf_token %}
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+		<label for="dob">DOB:</label>
+		<input type="date" id="dob" name="dob" required><br><br>
+		<label for="age">Age:</label>
+		<input type="number" id="age" name="age" placeholder="Enter your age" required><br><br>
+		<label for="gender">Gender:</label>
+		<input type="radio" id="male" name="gender" value="male" required>
+		<label for="male">Male</label>
+		<input type="radio" id="female" name="gender" value="female" required>
+		<label for="female">Female</label><br><br>
+        <label for="phone_number">Phone_Number:</label>
+        <input type="tel" id="phone_number" name="phone_number" placeholder="Enter your phone number" pattern="[0-9]{10}" required><br><br>
+        <label for="mail_id">Mail ID:</label>
+<input type="email" id="mail_id" name="mail_id" placeholder="Enter your email ID" required><br><br>
+<label for="address">Address:</label>
+<textarea id="address" name="address" rows="5" placeholder="Enter your address" required></textarea><br><br>
+<!--<label for="district">District:</label>-->
+<!--<select id="district" name="district" required>-->
+<!--<option value="" disabled selected>Select your district</option>-->
+<!--<option value="Ernakulam">Ernakulam</option>-->
+<!--<option value="Thrissur">Thrissur</option>-->
+<!--<option value="Kozhikode">Kozhikode</option>-->
+<!--</select><br><br>-->
+<!--<label for="branch">Branch:</label>-->
+<!--<select id="branch" name="branch" required>-->
+<!--<option value="" disabled selected>Select your branch</option>-->
+<!--{% if district == 'Ernakulam' %}-->
+<!--<option value="Aluva">Aluva</option>-->
+<!--<option value="Edapally">Edapally</option>-->
+<!--{% elif district == 'Thrissur' %}-->
+<!--<option value="Kodungallur">Kodungallur</option>-->
+<!--<option value="Guruvayoor">Guruvayoor</option>-->
+<!--{% elif district == 'Kozhikode' %}-->
+<!--<option value="Calicut">Calicut</option>-->
+<!--<option value="Koyilandy">Koyilandy</option>-->
+<!--{% endif %}-->
+
+
+<label for="district">District:</label>
+<select id="district" name="district" required>
+  <option value="" disabled selected>Select your district</option>
+  <option value="Ernakulam">Ernakulam</option>
+  <option value="Thrissur">Thrissur</option>
+  <option value="Kozhikode">Kozhikode</option>
+	<option value="Malappuram">Malappuram</option>
+	<option value="Kollam">Kollam</option>
+</select><br><br>
+
+<label for="branch">Branch:</label>
+<select id="branch" name="branch" required>
+  <option value="" disabled selected>Select your branch</option>
+</select>
+
+<script>
+function getBranches() {
+  const district = document.getElementById('district').value;
+  const branches = {
+    'Ernakulam': ['Aluva', 'Edapally', 'Kakkanad'],
+    'Thrissur': ['Punkunnam', 'Swargam Road', 'Round West'],
+    'Kozhikode': ['Mavoor Road', 'Puthiyara', 'Kunnamangalam'],
+    'Malappuram': ['Ponnani', 'Edappal', 'Chemmad'],
+    'Kollam': ['Ochira', 'Mayyanad', 'Thenmala'],
+  };
+
+  const branchSelect = document.getElementById('branch');
+  branchSelect.innerHTML = '';
+
+  for (let i = 0; i < branches[district].length; i++) {
+    const option = document.createElement('option');
+    option.text = branches[district][i];
+    option.value = branches[district][i];
+    branchSelect.add(option);
+  }
+}
+
+document.getElementById('district').addEventListener('change', getBranches);
+</script>
+
+</select><br><br>
+<label for="account_type">Account Type:</label>
+<select id="account_type" name="account_type" required>
+<option value="" disabled selected>Select your account type</option>
+<option value="Savings Account">Savings Account</option>
+<option value="Current Account">Current Account</option>
+<option value="Fixed Deposit">Fixed Deposit</option>
+</select><br><br>
+<label>Materials Provide:</label><br>
+<input type="checkbox" id="debit_card" name="materials_provide" value="Debit Card">
+<label for="debit_card">Debit Card</label><br>
+<input type="checkbox" id="credit_card" name="materials_provide" value="Credit Card">
+<label for="credit_card">Credit Card</label><br>
+<input type="checkbox" id="cheque_book" name="materials_provide" value="Cheque Book">
+<label for="cheque_book">Cheque Book</label><br><br>
+<input type="submit" value="Submit">
+<!--<a href="{% url 'success' %}">submit</a>-->
+<!--		<button type="button" class="btn btn-light"> <a href="{% url 'success' %}">submit</a></button>-->
+
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#district').change(function() {
+    var district = $(this).val();
+    $.ajax({
+      url: '/getbranches/',
+      data: {
+        'district': district
+      },
+      dataType: 'json',
+      success: function(data) {
+        var branches = data.branches;
+        var branch_select = $('#branch');
+        branch_select.empty();
+        branch_select.append($('<option>').text('Select your branch').attr('disabled', true).attr('selected', true));
+        $.each(branches, function(i, branch) {
+          branch_select.append($('<option>').text(branch).attr('value', branch));
+        });
+      }
+    });
+  });
+});
+</script>
+
+
+{% endblock %}
